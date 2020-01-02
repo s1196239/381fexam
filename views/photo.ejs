@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<title>Uploaded photo</title>
+<style type="text/css">
+      /* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+      #map {
+        height: 60%;
+        width: 60%;
+      }
+      /* Optional: Makes the sample page fill the window. */
+      html, body {
+        height: 100%;
+        margin: 10px;
+        padding: 0px;
+      }
+    </style></head>
+<body>
+	    <div>
+	        <h1><%=photo[0].title%></h1>
+	    
+			<img src=" data:<%=photo[0].mimetype%>;base64, <%=photo[0].image%>" style="width:60%">
+	   
+	        <p>Title: <%=photo[0].title%></>
+	        <p>Description: <%=photo[0].description%></>
+	        <p>Make: <%=photo[0].make%></>
+	        <p>Model: <%=photo[0].model%></>
+	        <p>Date: <%=photo[0].date%></>
+	        <br>
+	       
+	    </div>
+    <H3>Location</H3>
+		
+	<div id="map"></div>
+    <script>
+
+    function initMap() {
+        var myLatLng = {lat: <%=photo[0].lat%>, lng: <%=photo[0].lon%>};		
+	    var map = new google.maps.Map(document.getElementById('map'), {
+	        zoom: 13,
+	        center: myLatLng
+	    });
+	
+	    var marker = new google.maps.Marker({
+	        position: myLatLng,
+	        map: map
+	    });
+	}
+    </script>
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyACzdU_wtJcUs2ZquXdIBlezVBWmi9XhY8&callback=initMap">
+    </script>
+
+
+    <br>
+    <a href=/>Home</a>
+    <br><br>
+</body>
+
+</html>
